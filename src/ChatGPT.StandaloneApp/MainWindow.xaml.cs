@@ -41,11 +41,12 @@ namespace ChatGPT.StandaloneApp
                 // Display a loading message
                 ResponseBrowser.NavigateToString("<html><body><p>Loading...</p></body></html>");
 
-                // Send the query to ChatGPT and get the response
-                string response = await _chatGPTService.GetResponseAsync(userInput);
-
-                // Display the response in the WebBrowser control
-                ResponseBrowser.NavigateToString($"<html><body><p>{response}</p></body></html>");
+                // Send the query to ChatGPT and stream the response
+                await foreach (var partialResponse in _chatGPTService.GetResponseStreamAsync(userInput))
+                {
+                    // Update the response in real-time
+                    ResponseBrowser.NavigateToString($"<html><body><p>{partialResponse}</p></body></html>");
+                }
             }
             catch (Exception ex)
             {
