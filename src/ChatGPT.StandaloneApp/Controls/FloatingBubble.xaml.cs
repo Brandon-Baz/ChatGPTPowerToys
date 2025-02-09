@@ -68,8 +68,7 @@ namespace ChatGPT.StandaloneApp.Controls
 
         private void SetWindowAlwaysOnTop()
         {
-            var hwnd = new WindowInteropHelper(_parentWindow).Handle;
-            SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+            WindowHelper.SetWindowAlwaysOnTop(_parentWindow);
         }
 
         private void Bubble_Click(object sender, MouseButtonEventArgs e)
