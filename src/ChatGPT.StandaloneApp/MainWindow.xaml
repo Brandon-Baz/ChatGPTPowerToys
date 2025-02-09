@@ -18,7 +18,10 @@
             <Button x:Name="ToggleFloatingBubbleButton" Content="Toggle Bubble" Width="150" Height="30" VerticalAlignment="Center" Click="ToggleFloatingBubbleMode" />
         </DockPanel>
 
-        <!-- Web Browser Section -->
-        <WebBrowser x:Name="ResponseBrowser" Grid.Row="1" Margin="10" />
+        <!-- Response Display Section -->
+        <StackPanel Grid.Row="1" Margin="10">
+            <ProgressBar x:Name="ResponseProgressBar" Height="20" IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,0,10" />
+            <TextBox x:Name="ResponseTextBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True" AcceptsReturn="True" Margin="0" />
+        </StackPanel>
     </Grid>
 </Window>
