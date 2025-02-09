@@ -15,6 +15,7 @@
         <DockPanel Grid.Row="0" Margin="10">
             <TextBox x:Name="QueryInput" DockPanel.Dock="Left" Width="600" Height="30" Margin="0,0,10,0" VerticalAlignment="Center" />
             <Button x:Name="SubmitButton" Content="Submit" Width="100" Height="30" VerticalAlignment="Center" Click="SubmitButton_Click" />
+            <Button x:Name="ToggleFloatingBubbleButton" Content="Toggle Bubble" Width="150" Height="30" VerticalAlignment="Center" Click="ToggleFloatingBubbleMode" />
         </DockPanel>
 
         <!-- Web Browser Section -->

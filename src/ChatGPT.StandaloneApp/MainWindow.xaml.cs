@@ -8,11 +8,22 @@ namespace ChatGPT.StandaloneApp
     public partial class MainWindow : Window
     {
         private readonly ChatGPTService _chatGPTService;
+        private Controls.FloatingBubble _floatingBubble;
 
         public MainWindow()
         {
             InitializeComponent();
             _chatGPTService = new ChatGPTService();
+            _floatingBubble = new Controls.FloatingBubble();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (_floatingBubble != null)
+            {
+                _floatingBubble.Visibility = Visibility.Collapsed;
+            }
         }
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +50,18 @@ namespace ChatGPT.StandaloneApp
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ToggleFloatingBubbleMode()
+        {
+            if (_floatingBubble.Visibility == Visibility.Visible)
+            {
+                _floatingBubble.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                _floatingBubble.Visibility = Visibility.Visible;
             }
         }
     }
