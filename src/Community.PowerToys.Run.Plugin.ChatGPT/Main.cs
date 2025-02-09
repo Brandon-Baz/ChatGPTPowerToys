@@ -75,7 +75,7 @@ namespace Community.PowerToys.Run.Plugin.ChatGPT
                 try
                 {
                     // Fetch response from ChatGPTService
-                    string response = Task.Run(() => _chatGPTService.GetResponseAsync(searchTerm)).Result;
+                    string response = await _chatGPTService.GetResponseAsync(searchTerm);
 
                     var result = new Result
                     {
