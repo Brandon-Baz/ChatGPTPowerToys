@@ -4,5 +4,30 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- Define application-level resources here if needed -->
+        <ResourceDictionary>
+            <Style TargetType="Ellipse" x:Key="FloatingBubbleStyle">
+                <Setter Property="Width" Value="80" />
+                <Setter Property="Height" Value="80" />
+                <Setter Property="Fill" Value="LightBlue" />
+                <Setter Property="Stroke" Value="SteelBlue" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="2" />
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Width" Value="90" />
+                        <Setter Property="Height" Value="90" />
+                        <Setter Property="Fill" Value="SkyBlue" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Width" Value="70" />
+                        <Setter Property="Height" Value="70" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
