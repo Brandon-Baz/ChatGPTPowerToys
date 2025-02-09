@@ -1,0 +1,40 @@
+{
+  "package": {
+    "productName": "ChatGPTDesktopApp",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "bundle": {
+      "identifier": "com.example.chatgptdesktopapp",
+      "icon": [
+        "icons/icon128.png"
+      ]
+    },
+    "windows": [
+      {
+        "label": "main",
+        "title": "ChatGPT Desktop Application",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "transparent": false
+      },
+      {
+        "label": "floating_bubble",
+        "title": "Floating Bubble",
+        "width": 100,
+        "height": 100,
+        "resizable": false,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"
+    }
+  }
+}
