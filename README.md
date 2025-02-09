@@ -3,8 +3,43 @@
     <img alt="logo" src="./demo.gif">
 </p>
 
+### ChatGPT Desktop Application (Standalone Tauri App)
+The ChatGPT Desktop Application is a standalone Tauri-based app that integrates ChatGPT functionalities with a persistent floating bubble UI for enhanced multitasking.
+
+#### Features
+- **Floating Bubble UI**: A small, always-on-top bubble that follows the active window. Clicking the bubble expands it into a modal panel for interacting with ChatGPT.
+- **ChatGPT Integration**: Seamlessly send queries to ChatGPT and view responses directly within the app.
+- **Non-intrusive Design**: The modal panel remains accessible without disrupting your workflow.
+
+#### How to Build and Run
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Brandon-Baz/ChatGPTPowerToys.git
+   ```
+2. Navigate to the `tauri-app` directory:
+   ```bash
+   cd ChatGPTPowerToys/tauri-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Build and run the application:
+   ```bash
+   npm run tauri dev
+   ```
+5. To build a production-ready binary:
+   ```bash
+   npm run tauri build
+   ```
+
+#### Interacting with the Floating Bubble
+- **Bubble Behavior**: The floating bubble stays on top of other windows and adjusts its position to follow the active window.
+- **Expanding the Bubble**: Click the bubble to open a modal panel where you can type queries and view ChatGPT responses.
+- **Keyboard Shortcuts**: Use the "Enter" key to send queries quickly.
+
 ### How to install
-If you simply want to install the plugin to get up and running quickly, i suggest downloading the [precompiled binaries](https://github.com/ferraridavide/ChatGPTPowerToys/releases) from the Release section and [installing the Tampermonkey user script](#using-tampermonkey-recommended)
+If you simply want to install the plugin to get up and running quickly, I suggest downloading the [precompiled binaries](https://github.com/ferraridavide/ChatGPTPowerToys/releases) from the Release section and [installing the Tampermonkey user script](#using-tampermonkey-recommended)
 The installation process is as follows:
 1. Locate your PowerToys installation (eg. `C:\Program Files\PowerToys`)
 1. Navigate to `\modules\launcher\Plugins`

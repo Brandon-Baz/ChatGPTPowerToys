@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Desktop Application</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Floating Bubble UI -->
+  <div id="floating-bubble" class="floating-bubble">
+    <span>💬</span>
+  </div>
+
+  <!-- Hidden Modal Panel -->
+  <div id="modal-panel" class="modal-panel hidden">
+    <div class="modal-header">
+      <h2>ChatGPT Assistant</h2>
+      <button id="close-modal" class="close-button">✖</button>
+    </div>
+    <div class="modal-content">
+      <textarea id="chat-input" placeholder="Type your query here..."></textarea>
+      <button id="send-query" class="send-button">Send</button>
+      <div id="chat-response" class="chat-response"></div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
