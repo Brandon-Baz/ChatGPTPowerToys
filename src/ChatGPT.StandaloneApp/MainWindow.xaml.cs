@@ -39,18 +39,14 @@ namespace ChatGPT.StandaloneApp
             try
             {
                 // Display a loading message
-                ResponseBrowser.NavigateToString("<html><body><p>Loading...</p></body></html>");
+                ResponseBrowser.NavigateToString("<html><body><p>Opening ChatGPT...</p></body></html>");
 
-                // Send the query to ChatGPT and stream the response
-                await foreach (var partialResponse in _chatGPTService.GetResponseStreamAsync(userInput))
-                {
-                    // Update the response in real-time
-                    ResponseBrowser.NavigateToString($"<html><body><p>{partialResponse}</p></body></html>");
-                }
+                // Open ChatGPT in the browser with the query
+                await Task.Run(() => _chatGPTService.OpenChatGPT(userInput));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"An error occurred while opening the browser: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
