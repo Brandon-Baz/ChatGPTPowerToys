@@ -5,7 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Web;
+using System.Threading.Tasks;
+using Community.PowerToys.Run.Plugin.ChatGPT.Services;
 using ManagedCommon;
 using Wox.Infrastructure;
 using Wox.Plugin;
@@ -25,7 +26,7 @@ namespace Community.PowerToys.Run.Plugin.ChatGPT
 
         private bool _disposed;
 
-        public string Name => Properties.Resources.plugin_name;
+        private readonly ChatGPTService _chatGPTService = new ChatGPTService();
 
         public string Description => Properties.Resources.plugin_description;
 
@@ -71,29 +72,30 @@ namespace Community.PowerToys.Run.Plugin.ChatGPT
             {
                 string searchTerm = query.Search;
 
-                var result = new Result
+                try
                 {
-                    Title = searchTerm,
-                    SubTitle = string.Format(CultureInfo.CurrentCulture, Properties.Resources.plugin_open, BrowserInfo.Name ?? BrowserInfo.MSEdgeName),
-                    QueryTextDisplay = searchTerm,
-                    IcoPath = _iconPath,
-                };
+                    // Fetch response from ChatGPTService
+                    string response = Task.Run(() => _chatGPTService.GetResponseAsync(searchTerm)).Result;
 
-                string arguments = $"https://chat.openai.com/?PTquery={HttpUtility.UrlEncode(searchTerm)}";
-
-                result.ProgramArguments = arguments;
-                result.Action = action =>
-                {
-                    if (!Helper.OpenCommandInShell(BrowserInfo.Path, BrowserInfo.ArgumentsPattern, arguments))
+                    var result = new Result
                     {
-                        onPluginError();
-                        return false;
-                    }
+                        Title = searchTerm,
+                        SubTitle = response,
+                        QueryTextDisplay = searchTerm,
+                        IcoPath = _iconPath,
+                        Action = _ => true
+                    };
 
-                    return true;
-                };
-
-                results.Add(result);
+                    results.Add(result);
+                }
+                catch (Exception ex)
+                {
+                    // Log and handle errors gracefully
+                    Log.Error($"Error fetching ChatGPT response: {ex.Message}", this.GetType());
+                    _context.API.ShowMsg(
+                        $"Plugin: {Properties.Resources.plugin_name}",
+                        $"An error occurred while fetching the response: {ex.Message}");
+                }
             }
 
             return results;
